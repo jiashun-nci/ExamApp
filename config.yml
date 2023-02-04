@@ -15,7 +15,7 @@ jobs:
   build:
     working_directory: C:\NCI2022\DevOps\ExampleApplication
     docker:
-      - image: circlieci/node:10.16.3
+      - image: circleci/node:10.16.3
     steps:
       - checkout
       - run:
