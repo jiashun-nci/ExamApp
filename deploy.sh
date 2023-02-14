@@ -11,4 +11,4 @@ cd ExamApp
 # install dependencies
 sudo npm install
 # start application
-pm2 start ./bin/www -name ExamApp --env=production
+pm2 start ./bin/www --name ExamApp
