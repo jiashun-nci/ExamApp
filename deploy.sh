@@ -10,5 +10,8 @@ pm2 stop ExamApp
 cd ExamApp
 # install dependencies
 sudo npm install
+# stop & delete all applications
+pm2 stop all
+pm2 delete all
 # start application
 pm2 start ./bin/www --name ExamApp
