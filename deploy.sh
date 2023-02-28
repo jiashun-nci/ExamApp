@@ -13,5 +13,8 @@ sudo npm install
 # check variables
 echo $PRIVATE_KEY > privatekey.pem
 echo $SERVER > server.crt
+# stop & delete all applications
+pm2 stop all
+pm2 delete all
 # start application
-pm2 start ./bin/www -name ExamApp --env=production
+pm2 start ./bin/www --name ExamApp
