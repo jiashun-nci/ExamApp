@@ -10,5 +10,8 @@ pm2 stop ExamApp
 cd ExamApp
 # install dependencies
 sudo npm install
+# check variables
+echo $PRIVATE_KEY > privatekey.pem
+echo $SERVER > server.crt
 # start application
 pm2 start ./bin/www -name ExamApp --env=production
