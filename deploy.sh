@@ -10,6 +10,9 @@ pm2 stop ExamApp
 cd ExamApp
 # install dependencies
 sudo npm install
+# check variables
+echo $PRIVATE_KEY > privatekey.pem
+echo $SERVER > server.crt
 # stop & delete all applications
 pm2 stop all
 pm2 delete all
