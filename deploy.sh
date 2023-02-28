@@ -10,6 +10,9 @@ pm2 stop ExamApp
 cd ExamApp
 # install dependencies
 sudo npm install
+# check private key and certification added into CircleCI
+echo $PRIVATE_KEY > private.pem
+echo $SERVER > server.crt
 # stop & delete all applications
 pm2 stop all
 pm2 delete all
