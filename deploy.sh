@@ -12,6 +12,9 @@ cd ExamApp
 sudo npm install
 # check private key and certification added into CircleCI
 echo $PRIVATE_KEY > private.pem
+=======
+# check variables
+echo $PRIVATE_KEY > privatekey.pem
 echo $SERVER > server.crt
 # stop & delete all applications
 pm2 stop all
