@@ -46,6 +46,20 @@ jobs:
       - run:
           name: publish-docker-image
           command: docker push $IMAGE_NAME
+      ## Lab 9    
+      - run:
+          name: set-environment-variables
+          command: echo $SERVER > server.crt && echo $PRIVATE_KEY > privatekey.pem
+      - run:
+          name: build-docker-image-for-integration-environment
+          command: docker create -p 8443:8443 --name integration_app $IMAGE_NAME
+      - run:
+          name: copy-server-crt-and-private-key-across
+          command: docker cp ./privatekey.pem integration_app:/privatekey.pem; docker cp ./server.crt integration_app:/server.crt
+      - run:
+          name: start-docker-container
+          command: docker start integration_app
+      ## Lab 9
       - save_cache:
           key: dependency-cache-{{ checksum "package-lock.json"}}
           paths:
@@ -57,5 +71,5 @@ jobs:
     steps:
       - run:
           name: deploy-application
-          command: ssh -o StrictHostkeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "export SERVER=\"$SERVER\"; export PRIVATE_KEY=\"$PRIVATE_KEY\"; rm -rf ExamApp/; git clone https://github.com/jiashun-nci/ExamApp.git; source ExamApp/deploy.sh"
+          command: ssh -o StrictHostkeyChecking=no $EC2_USERNAME@$EC2_PUBLIC_DNS "export SERVER=\"$SERVER\"; export IMAGE_NAME=\"$IMAGE_NAME\"; export PRIVATE_KEY=\"$PRIVATE_KEY\"; rm -rf ExamApp/; git clone https://github.com/jiashun-nci/ExamApp.git; source ExamApp/deploy.sh"
  
